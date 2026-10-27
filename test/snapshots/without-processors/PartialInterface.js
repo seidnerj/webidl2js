@@ -170,6 +170,7 @@ exports.install = (globalObject, globalNames) => {
     POSITIVE_INFINITY: { value: Infinity, enumerable: true },
     NEGATIVE_INFINITY: { value: -Infinity, enumerable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, PartialInterface, PartialInterface.prototype);
   ctorRegistry[interfaceName] = PartialInterface;
 
   Object.defineProperty(globalObject, interfaceName, {

@@ -152,6 +152,7 @@ exports.install = (globalObject, globalNames) => {
       configurable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, Unscopable, Unscopable.prototype);
   ctorRegistry[interfaceName] = Unscopable;
 
   Object.defineProperty(globalObject, interfaceName, {

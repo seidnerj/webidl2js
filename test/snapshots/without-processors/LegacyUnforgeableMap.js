@@ -78,6 +78,7 @@ function getUnforgeables(globalObject) {
     Object.defineProperties(unforgeables, {
       a: { configurable: false },
     });
+    utils.adoptFunctionsIntoRealm(globalObject, unforgeables);
     unforgeablesMap.set(globalObject, unforgeables);
   }
   return unforgeables;
@@ -142,6 +143,7 @@ exports.install = (globalObject, globalNames) => {
   Object.defineProperties(LegacyUnforgeableMap.prototype, {
     [Symbol.toStringTag]: { value: "LegacyUnforgeableMap", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, LegacyUnforgeableMap, LegacyUnforgeableMap.prototype);
   ctorRegistry[interfaceName] = LegacyUnforgeableMap;
 
   // Only internally created wrappers have targets known to be ordinary objects. Caller-supplied

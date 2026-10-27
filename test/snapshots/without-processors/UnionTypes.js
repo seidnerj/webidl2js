@@ -370,6 +370,7 @@ exports.install = (globalObject, globalNames) => {
     unknownValue: { enumerable: true },
     [Symbol.toStringTag]: { value: "UnionTypes", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, UnionTypes, UnionTypes.prototype);
   ctorRegistry[interfaceName] = UnionTypes;
 
   Object.defineProperty(globalObject, interfaceName, {

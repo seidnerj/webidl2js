@@ -188,7 +188,12 @@ exports.install = (globalObject, globalNames) => {
     staticOp: { enumerable: true },
     staticAttr: { enumerable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, Global, Global.prototype);
   ctorRegistry[interfaceName] = Global;
+
+  if (ctorRegistry["Global Iterator"] !== undefined) {
+    utils.adoptFunctionsIntoRealm(globalObject, ctorRegistry["Global Iterator"]);
+  }
 
   Object.defineProperty(globalObject, interfaceName, {
     configurable: true,

@@ -392,6 +392,7 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, URLSearchParams, URLSearchParams.prototype);
   ctorRegistry[interfaceName] = URLSearchParams;
 
   ctorRegistry["URLSearchParams Iterator"] = Object.create(ctorRegistry["%IteratorPrototype%"], {
@@ -424,6 +425,10 @@ exports.install = (globalObject, globalNames) => {
       );
     },
   });
+
+  if (ctorRegistry["URLSearchParams Iterator"] !== undefined) {
+    utils.adoptFunctionsIntoRealm(globalObject, ctorRegistry["URLSearchParams Iterator"]);
+  }
 
   Object.defineProperty(globalObject, interfaceName, {
     configurable: true,

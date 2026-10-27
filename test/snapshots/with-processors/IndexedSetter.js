@@ -114,6 +114,7 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, IndexedSetter, IndexedSetter.prototype);
   ctorRegistry[interfaceName] = IndexedSetter;
 
   Object.defineProperty(globalObject, interfaceName, {

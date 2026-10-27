@@ -120,6 +120,7 @@ exports.install = (globalObject, globalNames) => {
     url: { enumerable: true },
     [Symbol.toStringTag]: { value: "PutForwards", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, PutForwards, PutForwards.prototype);
   ctorRegistry[interfaceName] = PutForwards;
 
   Object.defineProperty(globalObject, interfaceName, {

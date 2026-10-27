@@ -235,6 +235,7 @@ exports.install = (globalObject, globalNames) => {
     buffer: { enumerable: true },
     [Symbol.toStringTag]: { value: "DefaultToJSONTypes", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, DefaultToJSONTypes, DefaultToJSONTypes.prototype);
   ctorRegistry[interfaceName] = DefaultToJSONTypes;
 
   Object.defineProperty(globalObject, interfaceName, {

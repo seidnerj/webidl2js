@@ -255,6 +255,7 @@ exports.install = (globalObject, globalNames) => {
     overloaded2: { enumerable: true },
     [Symbol.toStringTag]: { value: "Variadic", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, Variadic, Variadic.prototype);
   ctorRegistry[interfaceName] = Variadic;
 
   Object.defineProperty(globalObject, interfaceName, {

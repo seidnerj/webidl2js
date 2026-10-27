@@ -366,6 +366,7 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, NumericConversions, NumericConversions.prototype);
   ctorRegistry[interfaceName] = NumericConversions;
 
   ctorRegistry["NumericConversions AsyncIterator"] = Object.create(
@@ -422,6 +423,10 @@ exports.install = (globalObject, globalNames) => {
       return internal.ongoingPromise;
     },
   });
+
+  if (ctorRegistry["NumericConversions AsyncIterator"] !== undefined) {
+    utils.adoptFunctionsIntoRealm(globalObject, ctorRegistry["NumericConversions AsyncIterator"]);
+  }
 
   Object.defineProperty(globalObject, interfaceName, {
     configurable: true,

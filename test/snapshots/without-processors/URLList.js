@@ -173,7 +173,12 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, URLList, URLList.prototype);
   ctorRegistry[interfaceName] = URLList;
+
+  if (ctorRegistry["URLList Iterator"] !== undefined) {
+    utils.adoptFunctionsIntoRealm(globalObject, ctorRegistry["URLList Iterator"]);
+  }
 
   Object.defineProperty(globalObject, interfaceName, {
     configurable: true,

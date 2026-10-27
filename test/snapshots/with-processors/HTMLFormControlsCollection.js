@@ -151,6 +151,11 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(
+    globalObject,
+    HTMLFormControlsCollection,
+    HTMLFormControlsCollection.prototype,
+  );
   ctorRegistry[interfaceName] = HTMLFormControlsCollection;
 
   // Only internally created wrappers have targets known to be ordinary objects. Caller-supplied

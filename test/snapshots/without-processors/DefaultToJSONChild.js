@@ -162,6 +162,7 @@ exports.install = (globalObject, globalNames) => {
     mixedIn: { enumerable: true },
     [Symbol.toStringTag]: { value: "DefaultToJSONChild", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, DefaultToJSONChild, DefaultToJSONChild.prototype);
   ctorRegistry[interfaceName] = DefaultToJSONChild;
 
   Object.defineProperty(globalObject, interfaceName, {

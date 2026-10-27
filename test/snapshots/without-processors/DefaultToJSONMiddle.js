@@ -114,6 +114,7 @@ exports.install = (globalObject, globalNames) => {
     middle: { enumerable: true },
     [Symbol.toStringTag]: { value: "DefaultToJSONMiddle", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, DefaultToJSONMiddle, DefaultToJSONMiddle.prototype);
   ctorRegistry[interfaceName] = DefaultToJSONMiddle;
 
   Object.defineProperty(globalObject, interfaceName, {

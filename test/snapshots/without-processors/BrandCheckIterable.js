@@ -161,6 +161,7 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, BrandCheckIterable, BrandCheckIterable.prototype);
   ctorRegistry[interfaceName] = BrandCheckIterable;
 
   ctorRegistry["BrandCheckIterable Iterator"] = Object.create(ctorRegistry["%IteratorPrototype%"], {
@@ -193,6 +194,10 @@ exports.install = (globalObject, globalNames) => {
       );
     },
   });
+
+  if (ctorRegistry["BrandCheckIterable Iterator"] !== undefined) {
+    utils.adoptFunctionsIntoRealm(globalObject, ctorRegistry["BrandCheckIterable Iterator"]);
+  }
 
   Object.defineProperty(globalObject, interfaceName, {
     configurable: true,

@@ -142,6 +142,11 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(
+    globalObject,
+    BrandCheckAsyncValueIterable,
+    BrandCheckAsyncValueIterable.prototype,
+  );
   ctorRegistry[interfaceName] = BrandCheckAsyncValueIterable;
 
   ctorRegistry["BrandCheckAsyncValueIterable AsyncIterator"] = Object.create(
@@ -198,6 +203,13 @@ exports.install = (globalObject, globalNames) => {
       return internal.ongoingPromise;
     },
   });
+
+  if (ctorRegistry["BrandCheckAsyncValueIterable AsyncIterator"] !== undefined) {
+    utils.adoptFunctionsIntoRealm(
+      globalObject,
+      ctorRegistry["BrandCheckAsyncValueIterable AsyncIterator"],
+    );
+  }
 
   Object.defineProperty(globalObject, interfaceName, {
     configurable: true,

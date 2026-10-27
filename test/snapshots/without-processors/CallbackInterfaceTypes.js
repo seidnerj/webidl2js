@@ -54,6 +54,7 @@ exports.install = (globalObject, globalNames) => {
 
   Object.defineProperties(CallbackInterfaceTypes, { ACCEPT: { value: 1, enumerable: true } });
 
+  utils.adoptFunctionsIntoRealm(globalObject, CallbackInterfaceTypes);
   Object.defineProperty(globalObject, "CallbackInterfaceTypes", {
     configurable: true,
     writable: true,

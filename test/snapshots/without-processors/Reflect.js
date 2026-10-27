@@ -222,6 +222,7 @@ exports.install = (globalObject, globalNames) => {
     withUnderscore: { enumerable: true },
     [Symbol.toStringTag]: { value: "Reflect", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, Reflect, Reflect.prototype);
   ctorRegistry[interfaceName] = Reflect;
 
   Object.defineProperty(globalObject, interfaceName, {

@@ -121,6 +121,7 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, InheritedCollection, InheritedCollection.prototype);
   ctorRegistry[interfaceName] = InheritedCollection;
 
   // Only internally created wrappers have targets known to be ordinary objects. Caller-supplied

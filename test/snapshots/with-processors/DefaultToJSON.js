@@ -219,6 +219,7 @@ exports.install = (globalObject, globalNames) => {
     staticValue: { enumerable: true },
     CONSTANT: { value: 1, enumerable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, DefaultToJSON, DefaultToJSON.prototype);
   ctorRegistry[interfaceName] = DefaultToJSON;
 
   Object.defineProperty(globalObject, interfaceName, {

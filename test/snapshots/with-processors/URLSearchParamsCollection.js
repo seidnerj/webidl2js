@@ -172,6 +172,11 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(
+    globalObject,
+    URLSearchParamsCollection,
+    URLSearchParamsCollection.prototype,
+  );
   ctorRegistry[interfaceName] = URLSearchParamsCollection;
 
   // Only internally created wrappers have targets known to be ordinary objects. Caller-supplied

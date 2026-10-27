@@ -142,6 +142,11 @@ exports.install = (globalObject, globalNames) => {
       writable: true,
     },
   });
+  utils.adoptFunctionsIntoRealm(
+    globalObject,
+    AsyncIterableValueArgs,
+    AsyncIterableValueArgs.prototype,
+  );
   ctorRegistry[interfaceName] = AsyncIterableValueArgs;
 
   ctorRegistry["AsyncIterableValueArgs AsyncIterator"] = Object.create(
@@ -198,6 +203,13 @@ exports.install = (globalObject, globalNames) => {
       return internal.ongoingPromise;
     },
   });
+
+  if (ctorRegistry["AsyncIterableValueArgs AsyncIterator"] !== undefined) {
+    utils.adoptFunctionsIntoRealm(
+      globalObject,
+      ctorRegistry["AsyncIterableValueArgs AsyncIterator"],
+    );
+  }
 
   Object.defineProperty(globalObject, interfaceName, {
     configurable: true,

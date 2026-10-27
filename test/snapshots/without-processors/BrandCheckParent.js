@@ -133,6 +133,7 @@ exports.install = (globalObject, globalNames) => {
     toString: { enumerable: true },
     [Symbol.toStringTag]: { value: "BrandCheckParent", configurable: true },
   });
+  utils.adoptFunctionsIntoRealm(globalObject, BrandCheckParent, BrandCheckParent.prototype);
   ctorRegistry[interfaceName] = BrandCheckParent;
 
   Object.defineProperty(globalObject, interfaceName, {
